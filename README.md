@@ -2,7 +2,7 @@
 
 > OCTP: Offline Campus Trading Platform
 
-## 前言`Prewface`
+## 前言`Preface`
 * 我尽量用一些生僻的`rare`，不常见的`unusual`英文，主要和别人的系统字段做区分`distinguish`，其次扩充`extend`我们的英语词汇量
 * 技术栈的话，前端是`Vue.js`，后端我用过`Node.js+Express`，用`Python+Django`也行，数据库考虑`Mongo`或者`MySql`比较熟
 * 这里建议`Vue+Python+MySql`
