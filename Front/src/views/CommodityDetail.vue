@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Row type="flex" justify="center">
+    <Row type="flex" justify="center" :gutter="16">
       <!-- pictures -->
       <i-col :xs="24" :sm="24" :md="12" :lg="16">
         <Carousel v-model="CarouselIndex" loop autoplay>
