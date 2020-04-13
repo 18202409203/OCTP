@@ -9,8 +9,7 @@ export default {
     "pictureList|2-5": [
       {
         pid: "@guid",
-        url: "@image"
-        // url: "@image('300x100', '#000', '#fff', 'png', @cword)"
+        url: "@dataImage"
       }
     ],
     description: "@cparagraph"

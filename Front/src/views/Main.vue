@@ -73,18 +73,16 @@ $logo-text-padding: 10px;
   background: #f5f7f9;
   position: relative;
   overflow: hidden;
+  min-height: 100%;
 }
 .layout-logo {
   border-radius: $logo-text-padding;
   float: left;
   position: relative;
-  // background: #888;
-  // color: white;
   padding: 0 $logo-text-padding;
   font-weight: bold;
 }
 .layout-nav {
-  // margin: 0 auto;
   margin-right: 20px;
   float: right;
 }
