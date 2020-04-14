@@ -48,6 +48,7 @@
 | INT | pid | pictureID | AI | 主键 | true | true |
 | INT | cid | commodityID | - | 外键 | true | - |
 | BLOB | content | 图片内容 | Blob | - | true | - |
+| INT | order | 图片顺序 | 0表示封面；其他1,2,3... | - | true | - |
 
 
 ## ~~User_Commodity-用户和心仪商品~~
