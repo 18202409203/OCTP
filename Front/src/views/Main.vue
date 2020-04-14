@@ -32,7 +32,7 @@
         </div>
       </Menu>
       <!-- content -->
-      <Content :style="{ padding: '0 50px' }">
+      <Content :style="{ padding: '0 5vw' }">
         <Breadcrumb :style="{ margin: '20px 0' }">
           <BreadcrumbItem
             v-for="breadCrumb in $route.meta.breadCrumbs"

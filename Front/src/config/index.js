@@ -25,7 +25,7 @@ export default {
     },
     {
       icon: "ios-paper",
-      text: "我的商品",
+      text: "商品管理",
       route: "/CommodityManage"
     },
     {

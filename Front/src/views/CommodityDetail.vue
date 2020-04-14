@@ -80,8 +80,15 @@ export default {
   },
   methods: {
     async getCommodityDetails() {
-      this.commodityDetails = await getCommodityDetailsApi();
-      console.log(this.commodityDetails);
+      let responseData = await getCommodityDetailsApi();
+      if (responseData.status) {
+        this.$Notice.error({
+          desc: responseData.message
+        });
+        this.commodityDetails = {};
+      } else {
+        this.commodityDetails = responseData.data;
+      }
     }
   },
   mounted() {
