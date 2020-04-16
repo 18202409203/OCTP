@@ -39,7 +39,6 @@
 | VARCHAR45 | price | 商品价格 | 出售价 | - | true | - |
 | DATETIME | birthday | 上架日期 | - | - | true | - |
 | DATETIME | deathday | 下架日期 | - | - | true | - |
-| VARCHAR45 | destination | 下架原因 | 0表示被买了，1表示不卖了 | - | true | - |
 | VARCHAR200 | description | 详细规格描述 | 允许长段文字 | - | - | - |
 
 ## Picture-图库

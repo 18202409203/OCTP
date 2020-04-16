@@ -2,16 +2,16 @@ export default {
   // 查看商品详情
   getCommodityDetailsMock: {
     data: {
-      cid: "@guid",
+      cid: "@increment",
       name: "@ctitle(4)",
       birthday: "@datetime",
       price: "@integer(10,500)",
-      ownerId: "@guid",
+      ownerId: "@increment",
       ownerName: "@cname",
       "pictureList|2-5": [
         {
           "order|+1": 0,
-          pid: "@guid",
+          pid: "@increment",
           url: "@dataImage"
         }
       ],
@@ -24,14 +24,14 @@ export default {
   getCommodityListByUserMock: {
     "data|22": [
       {
-        cid: "@guid",
+        cid: "@increment",
         name: "@ctitle(4)",
         birthday: "@datetime",
         price: "@integer(10,500)",
-        ownerId: "@guid",
+        ownerId: "@increment",
         ownerName: "@cname",
         firstPicture: {
-          pid: "@guid",
+          pid: "@increment",
           url: "@dataImage"
         },
         description: "@cparagraph"
@@ -44,11 +44,12 @@ export default {
   getMostPopularCommodityListMock: {
     "data|4": [
       {
-        cid: "@guid",
+        cid: "@increment",
         name: "@ctitle(4)",
         price: "@integer(10,500)",
+        birthday: "@datetime",
         firstPicture: {
-          pid: "@guid",
+          pid: "@increment",
           url: "@dataImage"
         }
       }
@@ -60,11 +61,12 @@ export default {
   getLatestCommodityListMock: {
     "data|4": [
       {
-        cid: "@guid",
+        cid: "@increment",
         name: "@ctitle(4)",
         price: "@integer(10,500)",
+        birthday: "@datetime",
         firstPicture: {
-          pid: "@guid",
+          pid: "@increment",
           url: "@dataImage"
         }
       }

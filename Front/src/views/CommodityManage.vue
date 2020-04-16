@@ -1,25 +1,33 @@
 <template>
   <div>
-    <Table :columns="tableColumns" :data="tableDataCurrentPage"></Table>
-    <div style="margin: 10px;overflow: hidden">
-      <div style="float: right;">
-        <Page
-          :total="tableDataTotalLength"
-          :page-size="pageSize"
-          :current="currentPage"
-          @on-change="changePage"
-        ></Page>
-      </div>
-    </div>
+    <!-- Table -->
+    <z-page-table
+      :columns="tableColumns"
+      divider-title="我的/他的商品"
+      :datum="tableDataTotal"
+      :page-size="10"
+    ></z-page-table>
+    <!-- Modal -->
+    <Modal
+      v-model="isShowModal"
+      title="请确认交易"
+      @on-ok="confirmHandler"
+      @on-cancel="cancelHandler"
+    >
+      <p>Content of dialog</p>
+      <p>Content of dialog</p>
+      <p>Content of dialog</p>
+    </Modal>
   </div>
 </template>
 
 <script>
 import zImage from "../components/zImage.vue";
+import zPageTable from "../components/zPageTable.vue";
 import { getCommodityListByUserApi } from "../api/http/commodityApi";
 export default {
   // eslint-disable-next-line vue/no-unused-components
-  components: { zImage },
+  components: { zImage, zPageTable },
   data() {
     return {
       tableColumns: [
@@ -48,7 +56,8 @@ export default {
                 props: {
                   height: "5vh",
                   width: "100%",
-                  src: params.row.firstPicture.url
+                  src: params.row.firstPicture.url,
+                  to: `/CommodityDetails/${params.row.cid}`
                 }
               })
             ]);
@@ -96,23 +105,15 @@ export default {
         }
       ],
       tableDataTotal: [],
-      currentPage: 1,
-      // 每页显示量
-      pageSize: 10
+      isShowModal: false,
+      modalType: false // true
     };
-  },
-  computed: {
-    tableDataCurrentPage() {
-      let startIndex = (this.currentPage - 1) * this.pageSize;
-      return this.tableDataTotal.slice(startIndex, startIndex + this.pageSize);
-    },
-    tableDataTotalLength() {
-      return this.tableDataTotal.length;
-    }
   },
   methods: {
     async getCommodityListByUser() {
-      let responseData = await getCommodityListByUserApi();
+      let responseData = await getCommodityListByUserApi(
+        this.$route.params.uid
+      );
       if (responseData.status) {
         this.$Notice.error({
           desc: responseData.message
@@ -122,11 +123,12 @@ export default {
         this.tableDataTotal = responseData.data;
       }
     },
-    changePage(page) {
-      this.currentPage = page;
-    },
     removeCommodity() {},
-    commitTransaction() {}
+    commitTransaction() {
+      this.isShowModal = true;
+    },
+    cancelHandler() {},
+    confirmHandler() {}
   },
   mounted() {
     this.getCommodityListByUser();

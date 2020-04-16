@@ -30,7 +30,7 @@ const routes = [
           )
       },
       {
-        path: "/CommodityManage",
+        path: "/CommodityManage/:uid",
         name: "CommodityManage",
         meta: { breadCrumbs: ["商品", "商品管理"] },
         component: () =>
@@ -39,16 +39,16 @@ const routes = [
           )
       },
       {
-        path: "/CommodityDetail",
-        name: "CommodityDetail",
+        path: "/CommodityDetails/:cid",
+        name: "CommodityDetails",
         meta: { breadCrumbs: ["商品", "商品详情"] },
         component: () =>
           import(
-            /* webpackChunkName: "CommodityDetail" */ "../views/CommodityDetail.vue"
+            /* webpackChunkName: "CommodityDetails" */ "../views/CommodityDetails.vue"
           )
       },
       {
-        path: "/Profile",
+        path: "/Profile/:uid",
         name: "Profile",
         meta: { breadCrumbs: ["用户", "个人信息"] },
         component: () =>

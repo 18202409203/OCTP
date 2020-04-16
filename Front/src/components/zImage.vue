@@ -1,5 +1,5 @@
 <template>
-  <div class="image_container" :style="style">
+  <div class="image_container" :style="style" @click="handleClick">
     <img :src="src" class="image_picture" />
   </div>
 </template>
@@ -10,7 +10,8 @@ export default {
   props: {
     src: String,
     width: String,
-    height: String
+    height: String,
+    to: String
   },
   data() {
     return {
@@ -22,7 +23,14 @@ export default {
       return `width: ${this.width};height: ${this.height}`;
     }
   },
-  methods: {}
+  methods: {
+    handleClick() {
+      this.to &&
+        this.$router.push({
+          path: this.to
+        });
+    }
+  }
 };
 </script>
 

@@ -25,10 +25,14 @@ instance.interceptors.response.use(
     return response.data;
   },
   // error
-  function() {
-    return {
-      message: "网络故障，连接失败！"
-    };
+  function(response) {
+    if (response) {
+      // 非2xx状态
+      return Promise.reject(new Error("服务器错误"));
+    } else {
+      // 连接失败
+      return Promise.reject(new Error("网络故障，连接失败！"));
+    }
   }
 );
 

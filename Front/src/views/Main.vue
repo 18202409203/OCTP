@@ -7,6 +7,7 @@
           <span>{{ logoText }}</span>
         </div>
         <div class="layout-nav">
+          <!-- fast menu -->
           <MenuItem
             v-for="hmItem in horizontalMenuItems"
             :key="hmItem.route"
@@ -17,15 +18,21 @@
               {{ hmItem.text }}
             </router-link>
           </MenuItem>
+          <!-- avatar menu -->
           <Dropdown style="margin-left: 20px" placement="bottom-end">
             <Avatar :src="userInfo.avatarUrl" />
             <DropdownMenu slot="list">
               <router-link
                 v-for="amItem in avatarMenuItems"
                 :key="amItem.route"
-                :to="amItem.route"
+                :to="`${amItem.route}/${userInfo.uid}`"
               >
                 <DropdownItem>{{ amItem.text }}</DropdownItem>
+              </router-link>
+              <router-link to="/Login">
+                <DropdownItem>
+                  {{ "退出登录" }}
+                </DropdownItem>
               </router-link>
             </DropdownMenu>
           </Dropdown>
@@ -41,7 +48,7 @@
             {{ breadCrumb }}
           </BreadcrumbItem>
         </Breadcrumb>
-        <Card>
+        <Card shadow>
           <router-view />
         </Card>
       </Content>
@@ -55,10 +62,11 @@ import config from "../config";
 export default {
   data() {
     return {
-      logoText: "OCTP线下校园交易平台",
+      logoText: config.logoText,
       horizontalMenuItems: config.horizontalMenuList,
       avatarMenuItems: config.avatarMenuList,
       userInfo: {
+        uid: 1,
         avatarUrl: "https://i.loli.net/2017/08/21/599a521472424.jpg"
       }
     };
