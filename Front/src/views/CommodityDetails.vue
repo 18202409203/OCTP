@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getCommodityDetailsApi } from "../api/http/commodityApi";
+import { Http_getCommodityDetails } from "../api/http/httpCommodityApi";
 import zCarousel from "../components/zCarousel.vue";
 import zCollapse from "../components/zCollapse.vue";
 export default {
@@ -57,8 +57,8 @@ export default {
   },
   methods: {
     async getCommodityDetails() {
-      let responseData = await getCommodityDetailsApi(this.$route.params.cid);
-      if (responseData.status) {
+      let responseData = await Http_getCommodityDetails(this.$route.params.cid);
+      if (responseData.code) {
         this.$Notice.error({
           desc: responseData.message
         });

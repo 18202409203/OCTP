@@ -27,11 +27,23 @@ instance.interceptors.response.use(
   // error
   function(response) {
     if (response) {
+      if (response.status === "404") {
+        return Promise.reject({
+          code: -1,
+          message: "接口不存在"
+        });
+      }
       // 非2xx状态
-      return Promise.reject(new Error("服务器错误"));
+      return Promise.reject({
+        code: -2,
+        message: "服务器错误"
+      });
     } else {
       // 连接失败
-      return Promise.reject(new Error("网络故障，连接失败！"));
+      return Promise.reject({
+        code: -5,
+        message: "网络故障，连接失败"
+      });
     }
   }
 );

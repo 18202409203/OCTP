@@ -24,7 +24,7 @@
 <script>
 import zImage from "../components/zImage.vue";
 import zPageTable from "../components/zPageTable.vue";
-import { getCommodityListByUserApi } from "../api/http/commodityApi";
+import { Http_getCommodityListByUser } from "../api/http/httpCommodityApi";
 export default {
   // eslint-disable-next-line vue/no-unused-components
   components: { zImage, zPageTable },
@@ -111,10 +111,10 @@ export default {
   },
   methods: {
     async getCommodityListByUser() {
-      let responseData = await getCommodityListByUserApi(
+      let responseData = await Http_getCommodityListByUser(
         this.$route.params.uid
       );
-      if (responseData.status) {
+      if (responseData.code) {
         this.$Notice.error({
           desc: responseData.message
         });

@@ -16,9 +16,9 @@
 <script>
 import zBanner from "../components/zBanner.vue";
 import {
-  getMostPopularCommodityListApi,
-  getLatestCommodityListApi
-} from "../api/http/commodityApi.js";
+  Http_getMostPopularCommodityList,
+  Http_getLatestCommodityList
+} from "../api/http/httpCommodityApi.js";
 export default {
   components: { zBanner },
   data() {
@@ -29,8 +29,8 @@ export default {
   },
   methods: {
     async getMostPopularCommodityList() {
-      let responseData = await getMostPopularCommodityListApi();
-      if (responseData.status) {
+      let responseData = await Http_getMostPopularCommodityList();
+      if (responseData.code) {
         this.$Notice.error({
           desc: responseData.message
         });
@@ -40,8 +40,8 @@ export default {
       }
     },
     async getLatestCommodityList() {
-      let responseData = await getLatestCommodityListApi();
-      if (responseData.status) {
+      let responseData = await Http_getLatestCommodityList();
+      if (responseData.code) {
         this.$Notice.error({
           desc: responseData.message
         });

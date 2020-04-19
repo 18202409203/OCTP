@@ -20,7 +20,7 @@
           </MenuItem>
           <!-- avatar menu -->
           <Dropdown style="margin-left: 20px" placement="bottom-end">
-            <Avatar :src="userInfo.avatarUrl" />
+            <Avatar :src="userInfo.avatar" />
             <DropdownMenu slot="list">
               <router-link
                 v-for="amItem in avatarMenuItems"
@@ -59,16 +59,16 @@
 </template>
 <script>
 import config from "../config";
+import { mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters(["userInfo"])
+  },
   data() {
     return {
       logoText: config.logoText,
       horizontalMenuItems: config.horizontalMenuList,
-      avatarMenuItems: config.avatarMenuList,
-      userInfo: {
-        uid: 1,
-        avatarUrl: "https://i.loli.net/2017/08/21/599a521472424.jpg"
-      }
+      avatarMenuItems: config.avatarMenuList
     };
   }
 };

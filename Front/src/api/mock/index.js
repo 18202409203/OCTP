@@ -1,36 +1,43 @@
-var Mock = require("mockjs");
-import apiList from "../apiList";
+const Mock = require("mockjs");
+import { commodityApi, userApi } from "../apiList";
 
-import commodityMockList from "./commodityMock";
+import commodityMock from "./mockCommodityApi";
+import userMock from "./mockUserApi";
 
 Mock.setup({
   timeout: 1000
 });
 
-// 查看商品详情
-Mock.mock(
-  apiList.getCommodityDetailsApi.regUrl,
-  apiList.getCommodityDetailsApi.method,
-  commodityMockList.getCommodityDetailsMock
-);
+let Random = Mock.Random;
+Random.extend({
+  phone: function() {
+    const head = ["138", "182", "151", "152", "130", "186"];
+    return this.pick(head) + Random.integer(10000000, 99999999);
+  },
+  studentNumber: function() {
+    const head = ["2013", "2017", "2018", "2019", "2020"];
+    return this.pick(head) + Random.integer(1000, 9999);
+  },
+  qq: function() {
+    return Random.integer(100000, 9999999999);
+  },
+  mail: function() {
+    const domain = ["qq.com", "163.com", "neu.edu.cn", "cambricon.cn"];
+    return Random.email(this.pick(domain));
+  }
+});
 
-// 查看某人的商品记录
-Mock.mock(
-  apiList.getCommodityListByUserApi.regUrl,
-  apiList.getCommodityListByUserApi.method,
-  commodityMockList.getCommodityListByUserMock
-);
+// commodity
+Object.getOwnPropertyNames(commodityApi).forEach(name => {
+  mockApi(name, commodityApi, commodityMock);
+});
 
-// 首页，最热
-Mock.mock(
-  apiList.getMostPopularCommodityListApi.regUrl,
-  apiList.getMostPopularCommodityListApi.method,
-  commodityMockList.getMostPopularCommodityListMock
-);
+// user
+Object.getOwnPropertyNames(userApi).forEach(name => {
+  mockApi(name, userApi, userMock);
+});
 
-// 首页，最新
-Mock.mock(
-  apiList.getLatestCommodityListApi.regUrl,
-  apiList.getLatestCommodityListApi.method,
-  commodityMockList.getLatestCommodityListMock
-);
+function mockApi(name, api, mock) {
+  let regUrl = new RegExp(api[name].url.replace(/\//g, "\\/"));
+  Mock.mock(regUrl, api[name].method, mock[name]);
+}

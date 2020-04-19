@@ -1,6 +1,6 @@
 export default {
   // 查看商品详情
-  getCommodityDetailsMock: {
+  getCommodityDetails: {
     data: {
       cid: "@increment",
       name: "@ctitle(4)",
@@ -17,11 +17,11 @@ export default {
       ],
       description: "@cparagraph"
     },
-    status: 0,
+    code: 0,
     message: "数据加载完毕！"
   },
   // 查看某人的商品记录
-  getCommodityListByUserMock: {
+  getCommodityListByUser: {
     "data|22": [
       {
         cid: "@increment",
@@ -37,11 +37,11 @@ export default {
         description: "@cparagraph"
       }
     ],
-    status: 0,
+    code: 0,
     message: "数据加载完毕！"
   },
   // 首页，最热
-  getMostPopularCommodityListMock: {
+  getMostPopularCommodityList: {
     "data|4": [
       {
         cid: "@increment",
@@ -54,11 +54,11 @@ export default {
         }
       }
     ],
-    status: 0,
+    code: 0,
     message: "数据加载完毕！"
   },
   // 首页，最新
-  getLatestCommodityListMock: {
+  getLatestCommodityList: {
     "data|4": [
       {
         cid: "@increment",
@@ -71,7 +71,7 @@ export default {
         }
       }
     ],
-    status: 0,
+    code: 0,
     message: "数据加载完毕！"
   }
 };
