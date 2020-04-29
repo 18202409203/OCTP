@@ -19,5 +19,6 @@ jobs:
         
       - name: install and build
         run: |
+          cd ./Front
           npm install
           npm run build
