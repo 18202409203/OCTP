@@ -17,7 +17,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - name: checkout  # 第一步，下载代码仓库
+    - name: checkout  # 下载代码仓库
       uses: actions/checkout@v2
         
     - name: Setup node
@@ -25,22 +25,41 @@ jobs:
       with:
         node-version: "10.x"
           
-    - name: build
+    - name: build # 打包
       run: |
         cd ./Front
         npm install
         npm run build
 
-    - name: Deploy to Server  # 第二步，rsync推文件
-      uses: AEnterprise/rsync-deploy@v1.0
+    - name: Deploy to Server  # rsync推文件
+      uses: Pendect/action-rsyncer@v1.1.0
       env:
-        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}   # 引用配置，SSH私钥
-        # ARGS: -avz --delete --exclude='*.pyc'   # rsync参数，排除.pyc文件
-        SERVER_PORT: '22'  # SSH端口
-        FOLDER: ./Front/dist  # 要推送的文件夹，路径相对于代码仓库的根目录
-        SERVER_IP: ${{ secrets.SSH_HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
-        USERNAME: ${{ secrets.SSH_USERNAME }}  # 引用配置，服务器登录名
-        SERVER_DESTINATION: /usr/share/nginx/html   # 部署到目标文件夹
+        DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+      with:
+        flags: '-avzr --delete'
+        options: ''
+        ssh_options: ''
+        src: 'Front/dist'
+        dest: '${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:/usr/share/nginx/html/OCTP'
+
+    - name: Display status from deploy
+      run: echo "${{ steps.deploy.outputs.status }}"
+  
+      
+#   with:
+#     # Rsync flags
+#     flags: -avzr --delete
+#     # Local folder to be synced
+#     src: ./Front/dist
+#     # Remote server and path. i.e user@server.com:/var/www/server.com/
+#     dest: : ubuntu@212.64.83.108:/usr/share/nginx/html/OCTP
+#         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}   # 引用配置，SSH私钥
+#         flags: -avz --delete
+#         SERVER_PORT: '22'  # SSH端口
+#         FOLDER: ./Front/dist  # 要推送的文件夹，路径相对于代码仓库的根目录
+#         SERVER_IP: ${{ secrets.SSH_HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
+#         USERNAME: ${{ secrets.SSH_USERNAME }}  # 引用配置，服务器登录名
+#         SERVER_DESTINATION: /usr/share/nginx/html   # 部署到目标文件夹
 
 #     - name: Restart server   # 第三步，重启服务
 #       uses: appleboy/ssh-action@master
