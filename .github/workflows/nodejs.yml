@@ -17,10 +17,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
         
-      - name: build and deploy
-        uses: JamesIves/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: master
-          FOLDER: build
-          BUILD_SCRIPT: npm install && npm run build
+      - name: install and build
+        run: |
+          npm install
+          npm run build
