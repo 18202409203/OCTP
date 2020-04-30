@@ -48,7 +48,7 @@ jobs:
         flags: '-avzr --delete'
 #         options: ''
 #         ssh_options: ''
-        src: 'Front/dist'
+        src: 'Front/dist/'
         dest: '${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:/usr/share/nginx/html/OCTP'
 
     - name: Display status from deploy
