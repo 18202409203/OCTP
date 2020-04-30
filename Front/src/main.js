@@ -9,9 +9,9 @@ Vue.use(ViewUI);
 
 Vue.config.productionTip = false;
 
-if (process.env.NODE_ENV !== "production") {
+// if (process.env.NODE_ENV !== "production") {
   require("./api/mock");
-}
+// }
 
 new Vue({
   router,
