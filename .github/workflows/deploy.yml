@@ -31,28 +31,28 @@ jobs:
         npm install
         npm run build
 
-    - name: deploy
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: ls -a
-        host: ${{secrets.SSH_HOST}}
-        username: ${{secrets.SSH_USERNAME}}
-        password: ${{secrets.SSH_PASSWORD}}
-
-#     - name: Deploy to Server  # rsync推文件
-#       id: deploy
-#       uses: Pendect/action-rsyncer@v1.1.0
-#       env:
-#         DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+#     - name: ssh connect
+#       uses: garygrossgarten/github-action-ssh@release
 #       with:
-#         flags: '-avzr --delete'
+#         command: sudo 
+#         host: ${{secrets.SSH_HOST}}
+#         username: ${{secrets.SSH_USERNAME}}
+#         password: ${{secrets.SSH_PASSWORD}}
+
+    - name: Deploy to Server  # rsync推文件
+      id: deploy
+      uses: Pendect/action-rsyncer@v1.1.0
+      env:
+        DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+      with:
+        flags: '-avzr --delete'
 #         options: ''
 #         ssh_options: ''
-#         src: 'Front/dist'
-#         dest: '${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:/usr/share/nginx/html/OCTP'
+        src: 'Front/dist'
+        dest: '${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:/usr/share/nginx/html/OCTP'
 
-#     - name: Display status from deploy
-#       run: echo "${{ steps.deploy.outputs.status }}"
+    - name: Display status from deploy
+      run: echo "${{ steps.deploy.outputs.status }}"
   
       
 #   with:
