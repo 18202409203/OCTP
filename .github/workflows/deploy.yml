@@ -49,7 +49,7 @@ jobs:
 #         options: ''
 #         ssh_options: ''
         src: 'Front/dist/'
-        dest: '${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:/usr/share/nginx/html/OCTP'
+        dest: '${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:/home/ubuntu/zpjTempCopyFile/OCTP'
 
     - name: Display status from deploy
       run: echo "${{ steps.deploy.outputs.status }}"
