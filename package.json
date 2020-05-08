@@ -1,0 +1,20 @@
+{
+  "name": "octp",
+  "version": "1.0.0",
+  "description": "Offline Campus Trade Platform",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18202409203/OCTP.git"
+  },
+  "author": "zpj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/18202409203/OCTP/issues"
+  },
+  "homepage": "https://github.com/18202409203/OCTP#readme"
+}
