@@ -7,6 +7,11 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "scripts": {
     "commit": "git cz"
   },
@@ -19,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/18202409203/OCTP/issues"
   },
-  "homepage": "https://github.com/18202409203/OCTP#readme"
+  "homepage": "https://github.com/18202409203/OCTP#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "husky": "^4.2.5"
+  }
 }
