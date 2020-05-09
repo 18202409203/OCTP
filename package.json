@@ -13,7 +13,8 @@
     }
   },
   "scripts": {
-    "commit": "git cz"
+    "commit": "git cz",
+    "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,8 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "husky": "^4.2.5"
+  },
+  "dependencies": {
+    "conventional-changelog-cli": "^2.0.34"
   }
 }
