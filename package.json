@@ -7,6 +7,9 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "scripts": {
+    "commit": "git cz"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/18202409203/OCTP.git"
